@@ -1,7 +1,12 @@
+import { RegisterForm } from "@/components/Auth";
 import { ApiError } from "next/dist/server/api-utils";
 
 export const ENV = {
     SERVER_HOST: "http://localhost:1337",
     API_URL: "http://localhost:1337/api",
-    ENPOINSTS: {},
+    ENDPOINTS: {
+        AUTH: {
+            REGISTER:"auth/local/register"
+        }
+    },
 }
