@@ -11,6 +11,10 @@ export class Token {
         return localStorage.getItem(ENV.TOKEN);
     }
 
+    removeToken() {
+        localStorage.removeItem(ENV.TOKEN);
+    }
+
     hasExpired(token) {
         const tokenDecode = jwtDecode(token);
         const expireDate = tokenDecode.exp * 1000;

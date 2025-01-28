@@ -11,9 +11,24 @@ export function AuthProvider(props) {
         const [user, setUser] = useState(null);
         const [token, setToken] = useState(null);
         const [loading, setLoading] = useState(true);
+
         useEffect(() => {
-            setLoading(false);
-        },[]);
+            (async () => {
+                const token = tokenCtrl.getToken();
+                if (!token) {
+                    logout();
+                    setLoading(false);
+                    return;
+                } 
+
+                if (tokenCtrl.hasExpired(token)) {
+                    logout();
+                } else {
+                    await login(token);
+                }
+             })()
+            }, []);
+
         
         const login = async (token) => {
             try {
@@ -33,13 +48,23 @@ export function AuthProvider(props) {
             }
         };
 
+        const logout = () => {
+            // TODO: Eliminar el token en el localStorage
+            tokenCtrl.removeToken();
+            // TODO: Resetear el token en el state
+            setToken(null);
+            // TODO: Resetear el user en el state
+            setUser(null); 
+        };
+
+        const updateUser = (user) => {
 
     const data ={
         accessToken: token,
         user,
         login,
-        logout: null,
-        updateUser: null,
+        logout,
+        updateUser,
     };
 
     if (loading) return null;

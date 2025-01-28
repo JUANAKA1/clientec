@@ -4,11 +4,16 @@ export async function authFetch(url, params) {
     const tokenCtrl = new Token();
     const token = tokenCtrl.getToken();
 
+    const logout = () => {
+        tokenCtrl.removeToken();
+        window.location.replace("/");
+    };
+
     if (!token) {
-        // TODO: logout
+        logout();
     } else {
         if (tokenCtrl.hasExpired(token)) {
-            // TODO: logout
+            logout();
         } else {
             const paramsTemp = {
                 ...params,
