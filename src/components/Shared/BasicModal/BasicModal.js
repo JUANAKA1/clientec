@@ -7,5 +7,5 @@ export function BasicModal(props) {
         <Modal.Header>{title}</Modal.Header>
         <Modal.Content>{children}</Modal.Content>
     </Modal>
-  )
+  );
 }

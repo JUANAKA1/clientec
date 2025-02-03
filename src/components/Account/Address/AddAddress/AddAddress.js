@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button } from "semantic-ui-react";
-import styles from "./AddAddress.module.scss";
 import { BasicModal } from "@/components/Shared";
 import { AddressForm } from "../AddressForm";
+import styles from "./AddAddress.module.scss";
 
 export function AddAddress() {
   const [ show, setShow ] = useState(false);
