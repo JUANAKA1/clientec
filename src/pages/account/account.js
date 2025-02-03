@@ -46,13 +46,17 @@ export default function AccountPage() {
       render: () => (
         <Tab.Pane attached={false}>
           <Settings.ChangeNameFrom />
+          <div className={styles.containerForms}>
+            <Settings.ChangeEmailForm />
+            <Settings.ChangePasswordForm />
+          </div>
           <Separator height={80} />
         </Tab.Pane>
       ),
     },
     {
       menuItem: {
-        icon: "logout",
+        icon: "log out",
         content: "",
         onClick: logout,
       }
