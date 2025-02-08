@@ -16,8 +16,6 @@ export function ChangeNameFrom() {
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
-                console.log(formValue);
-
                 await userCtrl.updateMe(user.id, formValue);
             } catch (error) {
                 console.error(error);
