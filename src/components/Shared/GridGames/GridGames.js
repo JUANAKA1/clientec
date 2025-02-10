@@ -6,7 +6,6 @@ import { Label } from "../Label";
 
 export function GridGames(props) {
     const { games } = props;
-    console.log(games);
     
   return (
     <div className={styles.gridGames}>

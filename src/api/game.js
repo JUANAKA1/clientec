@@ -40,4 +40,5 @@ export class Game {
             throw error;
         }
     }
+
 }
