@@ -1,11 +1,11 @@
-import { GridGames, Separator } from "@/components/Shared";
+import { Container } from "semantic-ui-react";
 import { BasicLayout } from "@/layouts";
 import { size } from "lodash";
-import { Container } from "semantic-ui-react";
+import { GridGames, Separator, NoResult, Pagination } from "@/components/Shared";
 
 export default function PlatformPage(props) {
     const { games, platform, pagination } = props;
-    const hasProducts = size(games) > 0;
+    const hasProducts = size(games) > 0;    
     
   return (
     <>
@@ -18,9 +18,16 @@ export default function PlatformPage(props) {
           {hasProducts ? (
             <>
               <GridGames games={games} />
+              <Separator height={50} />
+              <Pagination 
+                currentPage={pagination.page}  
+                totalPages={pagination.pageCount} 
+              />
             </>
           ):(
-            <p>No results</p>
+            <NoResult 
+              text={`La categoria ${platform.title} aun no tiene productos `} 
+            />
           )}
           
           <Separator height={100} />
