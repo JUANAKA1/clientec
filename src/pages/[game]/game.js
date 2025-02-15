@@ -15,6 +15,16 @@ export default function GamePage(props) {
         <Separator height={50} />
 
         <Game.Info game={game} />
+
+        <Separator height={30} />
+
+        <Game.Media 
+          video={game.video} 
+          screenshots={game.screenshots}
+        />
+
+        <Separator height={50} />
+
     </BasicLayout>
     </>
   )
