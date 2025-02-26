@@ -26,12 +26,19 @@ export function WishlistIcon(props) {
       })();
     }, [gameId]);
 
-    const addWishlist = () => {
-      console.log("addWishlist" )
+    const addWishlist = async() => {
+      const response = await wishlistCtrl.add(user.documentId, gameId);
+      setHasWishlist(response);
+      
     }
     
-    const deleteWishlist = () => {
-      console.log("deleteWishlist" )
+    const deleteWishlist = async() => {
+      try {
+        await wishlistCtrl.delete(hasWishlist.documentId);
+        setHasWishlist(false);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     if (hasWishlist === null) return null;

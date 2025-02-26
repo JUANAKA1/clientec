@@ -30,7 +30,7 @@ export function ListAddresses(props) {
         {map(addresses, (address) =>(
             <Address 
             key={address.id} 
-            addressId={address.documentId} 
+            addressId={address.documentId} // address.id se cambia por adrress.documentId
             address={address}
             onReload={onReload} 
         />
