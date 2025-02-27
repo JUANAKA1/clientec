@@ -5,11 +5,16 @@ import { Cart } from "@/api";
 import { useAuth, useCart } from "@/hooks";
 import { fn } from "@/utils";
 import styles from "./Resume.module.scss";
+import { useRouter } from "next/router";
+
+const cartCtrl = new Cart();
 
 export function Resume(props) {
   const { games, addressSelected } = props;
   const [total, setTotal] = useState(null);
-  console.log(total);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     let totalTemp = 0;
@@ -19,6 +24,18 @@ export function Resume(props) {
     });
     setTotal(totalTemp.toFixed(2));
   }, [games]);
+
+  const onPay = async () => {
+    setLoading(true);
+    goToStepEnd();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
+  const goToStepEnd = () => {
+    router.replace({ query:{...router.query, step:3}})
+  }
+  if (!total) return null;
   return (
     <div className={styles.resume}>
       <h2>ResumeN</h2>
@@ -43,7 +60,7 @@ export function Resume(props) {
           <span>Total</span>
           <span>$ {total}</span>
         </div>
-        <Button primary fluid disabled={!addressSelected}>
+        <Button primary fluid disabled={!addressSelected} onClick={onPay} loading={loading} >
           Pagar
         </Button>
       </div>
