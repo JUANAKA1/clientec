@@ -1,7 +1,7 @@
 import { Container } from "semantic-ui-react";
 import { BasicLayout } from "@/layouts";
 import { Home } from "@/components/Home";
-import { BarTrust, Separator, BannerAd } from "@/components/Shared";
+import { BarTrust, Separator, BannerAd, Seo } from "@/components/Shared";
 
 const platformsId = {
   playstation: 2,
@@ -13,6 +13,7 @@ const platformsId = {
 export default function HomePage() {
   return (
     <>
+    <Seo />
       <BasicLayout >
       <Separator height={100} /> 
 

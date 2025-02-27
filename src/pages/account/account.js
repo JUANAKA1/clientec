@@ -3,34 +3,40 @@ import { useRouter } from "next/router";
 import { Tab } from "semantic-ui-react";
 import { useAuth } from "@/hooks";
 import { BasicLayout } from "@/layouts";
-import { Info, Settings, Address, Wishlist } from "@/components/Account";
-import { Separator } from "@/components/Shared";
+import {
+  Info,
+  Settings,
+  Address,
+  Wishlist,
+  Orders,
+} from "@/components/Account";
+import { Seo, Separator } from "@/components/Shared";
 import styles from "./account.module.scss";
 
 export default function AccountPage() {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const [ reload, setReload ] = useState(false);
+  const [reload, setReload] = useState(false);
 
   if (!user) {
     router.push("/");
-    return null
+    return null;
   }
 
   const onReload = () => setReload((prevState) => !prevState);
 
-
   const panes = [
     {
-      menuItem: 'Mis pedidos',
+      menuItem: "Mis pedidos",
       render: () => (
         <Tab.Pane attached={false}>
-          <p>Mis pedidos...</p>
+          <Orders />
+          <Separator height={80} />
         </Tab.Pane>
       ),
     },
     {
-      menuItem: 'Lista de deseos',
+      menuItem: "Lista de deseos",
       render: () => (
         <Tab.Pane attached={false}>
           <Wishlist />
@@ -39,7 +45,7 @@ export default function AccountPage() {
       ),
     },
     {
-      menuItem: 'Direcciones',
+      menuItem: "Direcciones",
       render: () => (
         <Tab.Pane attached={false}>
           <Address.AddAddress onReload={onReload} />
@@ -49,7 +55,7 @@ export default function AccountPage() {
       ),
     },
     {
-      menuItem: {icon:"settings", content: 'Ajustes'},
+      menuItem: { icon: "settings", content: "Ajustes" },
       render: () => (
         <Tab.Pane attached={false}>
           <Settings.ChangeNameFrom />
@@ -66,21 +72,21 @@ export default function AccountPage() {
         icon: "log out",
         content: "",
         onClick: logout,
-      }
-    }
+      },
+    },
   ];
 
   return (
     <>
+      <Seo title="Mi cuenta" />
       <BasicLayout isContainer relative>
         <Info />
 
-        <Tab 
-          menu={{secondary: true, pointing: true }} 
-          panes={panes} 
+        <Tab
+          menu={{ secondary: true, pointing: true }}
+          panes={panes}
           className={styles.tabs}
         />
-
       </BasicLayout>
     </>
   );

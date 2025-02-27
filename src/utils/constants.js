@@ -12,6 +12,7 @@ export const ENV = {
         ADDRESS: "addresses",
         GAME:"games",
         WISHLIST: "wishlists",
+        ORDER: "orders",
     },
     TOKEN: "token",
     CART: "cart",

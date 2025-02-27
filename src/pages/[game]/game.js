@@ -1,19 +1,20 @@
-import { BasicLayout } from '@/layouts'
-import { Game } from '@/components/Game';
-import { ENV } from '@/utils';
-import { Separator } from '@/components/Shared';
+import { BasicLayout } from "@/layouts";
+import { Game } from "@/components/Game";
+import { ENV } from "@/utils";
+import { Seo, Separator } from "@/components/Shared";
 
 export default function GamePage(props) {
-    const { game } = props;
-    const wallpaper = `${ENV.SERVER_HOST}${game.wallpaper.url}`;
-    
+  const { game } = props;
+  const wallpaper = `${ENV.SERVER_HOST}${game.wallpaper.url}`;
+
   return (
     <>
-    <BasicLayout>
+      <Seo title={`Juego ${game.title}`} description={game.summary} />
+      <BasicLayout>
         <Game.HeaderWallpaper image={wallpaper} />
-        <Game.Panel 
+        <Game.Panel
           gameId={game.documentId} // game.id se cambia por game.documentId
-          game={game} 
+          game={game}
         />
         <Separator height={50} />
 
@@ -21,14 +22,10 @@ export default function GamePage(props) {
 
         <Separator height={30} />
 
-        <Game.Media 
-          video={game.video} 
-          screenshots={game.screenshots}
-        />
+        <Game.Media video={game.video} screenshots={game.screenshots} />
 
         <Separator height={50} />
-
-    </BasicLayout>
+      </BasicLayout>
     </>
-  )
+  );
 }
