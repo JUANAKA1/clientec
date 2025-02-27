@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
-import styles from "./Resume.module.scss";
 import { useEffect, useState } from "react";
-import { forEach } from "lodash";
-import { fn } from "@/utils";
 import { Button } from "semantic-ui-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { forEach } from "lodash";
+import { fn } from "@/utils";
+import styles from "./Resume.module.scss";
 
 export function Resume(props) {
   const { games } = props;
